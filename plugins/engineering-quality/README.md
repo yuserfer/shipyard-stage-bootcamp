@@ -12,7 +12,7 @@ security review skill and subagent, and the two quality-gate hooks.
 | Skill: security-review | `skills/security-review/` (with `checklist.md`) | `/engineering-quality:security-review [path or git range]`: read-only review in a forked `Explore` context |
 | Subagent: security-reviewer | `agents/security-reviewer.md` | "Use the engineering-quality:security-reviewer agent on notes_api/" (or pick it from the @ mention menu) |
 | Hook: block unsafe commands | `hooks/block-unsafe-commands.sh` | Automatic. `PreToolUse` on `Bash`: blocks `rm -rf` on `/`, `~`, or `..`; force pushes; `git reset --hard`; `curl \| sh`; reading `.env`, `*.pem`, or SSH keys; `chmod 777`; `sudo` |
-| Hook: post-edit validation | `hooks/post-edit-validate.sh` | Automatic. `PostToolUse` on `Edit\|Write`: runs `python3 -m unittest discover -s tests -q` after `.py` edits and `node --test dashboard/tests/` after `dashboard/*.js` or `*.mjs` edits. Failures go back to Claude (exit 2) |
+| Hook: post-edit validation | `hooks/post-edit-validate.sh` | Automatic. `PostToolUse` on `Edit\|Write`: runs `python3 -m unittest discover -s tests -q` after `.py` edits and `node --test "dashboard/tests/*.mjs"` after `dashboard/*.js` or `*.mjs` edits. Failures go back to Claude (exit 2) |
 | Manifest | `.claude-plugin/plugin.json` | Name, version, author, license |
 | Hook wiring | `hooks/hooks.json` | Uses `"${CLAUDE_PLUGIN_ROOT}"/hooks/...` so the scripts resolve wherever the plugin is installed |
 

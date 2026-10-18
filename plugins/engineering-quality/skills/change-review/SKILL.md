@@ -39,7 +39,7 @@ point cites a command and its real output, or a file and line.
    - `NOT VERIFIED`: you could not check it. Say what is needed to check it.
 4. **Run the tests** for point 3 (ask permission if prompted):
    `python3 -m unittest discover -s tests -q` and, if `dashboard/` changed and node
-   exists, `node --test dashboard/tests/`. Quote the final summary lines verbatim.
+   exists, `node --test "dashboard/tests/*.mjs"`. Quote the final summary lines verbatim.
 5. **Security (point 4).** Delegate to this plugin's
    `engineering-quality:security-reviewer` subagent, passing the list of changed
    files from `git diff --stat`, and merge its findings into the review. If the
@@ -102,7 +102,7 @@ Plugin skills are shared across repos, so keep repo-specific rules in each repo'
 `CLAUDE.md` (Claude reads it before this skill runs). Defaults:
 - Protected files: `<e.g. data/*.json formats, dashboard element IDs used by tests>`
 - Required test commands: `python3 -m unittest discover -s tests -q`,
-  `node --test dashboard/tests/`
+  `node --test "dashboard/tests/*.mjs"`
 - Extra checks: `<e.g. README usage examples updated when CLI flags change>`
 
 ## Worked example (Shipyard)

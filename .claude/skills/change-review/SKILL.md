@@ -46,7 +46,7 @@ point cites a command and its real output, or a file and line.
    - `NOT VERIFIED`: you could not check it. Say what is needed to check it.
 4. **Run the tests** for point 3 (ask permission if prompted):
    `python3 -m unittest discover -s tests -q` and, if `dashboard/` changed and node
-   exists, `node --test dashboard/tests/`. Quote the final summary lines verbatim.
+   exists, `node --test "dashboard/tests/*.mjs"`. Quote the final summary lines verbatim.
 5. **Security (point 4).** Check the diff against the security checklist. If the
    `security-reviewer` subagent is available, delegate to it with the list of
    changed files and merge its findings. Otherwise use the
@@ -106,7 +106,7 @@ point cites a command and its real output, or a file and line.
 Replace these with your project's rules during Part 9:
 - Protected files: `<e.g. data/*.json formats, dashboard element IDs used by tests>`
 - Required test commands: `python3 -m unittest discover -s tests -q`,
-  `node --test dashboard/tests/`
+  `node --test "dashboard/tests/*.mjs"`
 - Extra checks: `<e.g. README usage examples updated when CLI flags change>`
 
 ## Worked example (Shipyard)

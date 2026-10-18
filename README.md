@@ -63,5 +63,5 @@ New here? Read `docs/HANDOFF.md` first.
 
 ```sh
 python3 -m unittest discover -s tests -q
-node --test dashboard/tests/
+node --test "dashboard/tests/*.mjs"
 ```
