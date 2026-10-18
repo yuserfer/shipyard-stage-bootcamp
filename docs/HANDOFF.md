@@ -2,7 +2,7 @@
 
 ## Start here (15 minutes)
 1. `python3 seed.py --force && python3 -m notes_api.server` → open http://localhost:8000/
-2. `python3 -m unittest discover -s tests -q` and `node --test dashboard/tests/` — both must be green.
+2. `python3 -m unittest discover -s tests -q` and `node --test "dashboard/tests/*.mjs"` — both must be green.
 3. Read `docs/ARCHITECTURE.md`, then `dashboard/js/main.js` (entry point).
 
 ## How to change things safely

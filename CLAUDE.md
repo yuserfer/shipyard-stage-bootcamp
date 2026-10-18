@@ -8,7 +8,7 @@ Release-management toolkit used in the Claude Code Bootcamp. The engineer of rec
 
 ## Commands
 - Python tests: `python3 -m unittest discover -s tests -q`
-- Dashboard tests (when `dashboard/` exists): `node --test dashboard/tests/`
+- Dashboard tests (when `dashboard/` exists): `node --test "dashboard/tests/*.mjs"` (quote the glob; a bare directory path fails on Node 24 / Windows)
 - CLI: `python3 shipctl.py <command>`; set `SHIPCTL_DB` to a scratch file when experimenting.
 
 ## Conventions
