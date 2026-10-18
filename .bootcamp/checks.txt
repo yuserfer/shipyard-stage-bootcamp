@@ -1,0 +1,20 @@
+# name :: shell command :: expected substring in output (optional; exit code must be 0)
+AC1 add prints id :: rm -f $SHIPCTL_DB; python3 shipctl.py add "Freeze API" :: Added #1: Freeze API
+AC2 empty title exits 1 :: python3 shipctl.py add "  "; test $? -eq 1 && echo ok :: ok
+AC4 pending list sorted by due date :: rm -f $SHIPCTL_DB; python3 shipctl.py add Zeta-late >/dev/null; python3 shipctl.py add Alpha-early >/dev/null; python3 shipctl.py due 1 2026-11-09 >/dev/null; python3 shipctl.py due 2 2026-11-01 >/dev/null; python3 shipctl.py list | python3 -c "import sys; t=sys.stdin.read(); print('order-ok' if 0 <= t.find('Alpha-early') < t.find('Zeta-late') else 'wrong order')" :: order-ok
+AC6 unknown id exits 1 :: python3 shipctl.py done 999; test $? -eq 1 && echo ok :: ok
+Tournament: three designs :: ls designs/option-*.md | wc -l :: 3
+Tournament: matrix and rejected log :: test -s decision/decision-matrix.md && test -s decision/rejected-options-log.md && echo ok :: ok
+BUG-101 regression test present and passing :: python3 -m unittest discover -s tests -p "test_partial_update.py" -q 2>&1 | tail -1 :: OK
+Search treats % literally (HTTP-free) :: python3 -c "from notes_api.repository import NoteRepository as R; from notes_api.service import NoteService as S; s=S(R()); s.create({'title':'Coverage 100%'}); s.create({'title':'Coverage 1000'}); print(len(s.list(q='100%')))" :: 1
+Dashboard is served at / :: python3 -c "import notes_api.server as s; print(s.DASHBOARD_DIR.joinpath('index.html').exists())" :: True
+Split into modules (at least 4 JS files) :: test $(ls dashboard/*.js dashboard/js/*.js 2>/dev/null | wc -l) -ge 4 && echo ok :: ok
+Handoff docs present :: test -s docs/ARCHITECTURE.md && test -s docs/HANDOFF.md && echo ok :: ok
+Unsafe command hook blocks force push :: printf '{"tool_name":"Bash","tool_input":{"command":"git push --force origin main"}}' | .claude/hooks/block-unsafe-commands.sh; test $? -eq 2 && echo blocked :: blocked
+Unsafe command hook allows tests :: printf '{"tool_name":"Bash","tool_input":{"command":"python3 -m unittest discover -s tests -q"}}' | .claude/hooks/block-unsafe-commands.sh && echo allowed :: allowed
+Skill and subagent present :: test -s .claude/skills/change-review/SKILL.md && test -s .claude/agents/security-reviewer.md && echo ok :: ok
+Plugin manifest is valid JSON with name :: python3 -c "import json;print(json.load(open('plugins/engineering-quality/.claude-plugin/plugin.json'))['name'])" :: engineering-quality
+Plugin validates (needs claude CLI) :: if command -v claude >/dev/null; then claude plugin validate ./plugins/engineering-quality --strict; else echo "Validation passed (skipped: no claude CLI)"; fi :: Validation passed
+Plugin hook scripts executable :: test -x plugins/engineering-quality/hooks/post-edit-validate.sh && test -x plugins/engineering-quality/hooks/block-unsafe-commands.sh && echo ok :: ok
+Release notes endpoint (service level) :: python3 -c "from notes_api.repository import NoteRepository as R; from notes_api.service import NoteService as S; from notes_api.releases import build_release_notes as b; s=S(R()); s.create({'title':'x','tags':['release:v1.4','backend']}); print(b(s,'v1.4')['sections'][0]['title'])" :: Backend
+Readiness report has a decision :: grep -E "Conditional go|No-go|Go" reports/production-readiness.md | head -1 :: go

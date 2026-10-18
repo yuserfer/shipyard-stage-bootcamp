@@ -1,0 +1,31 @@
+{
+  "description": "Engineering Quality: block unsafe Bash commands before they run; run the relevant tests after every Edit or Write.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/block-unsafe-commands.sh",
+            "timeout": 10,
+            "statusMessage": "engineering-quality: checking command safety"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/post-edit-validate.sh",
+            "timeout": 180,
+            "statusMessage": "engineering-quality: running tests for the edited file"
+          }
+        ]
+      }
+    ]
+  }
+}

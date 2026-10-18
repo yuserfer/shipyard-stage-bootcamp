@@ -1,0 +1,11 @@
+{
+  "name": "engineering-quality",
+  "displayName": "Engineering Quality",
+  "version": "1.0.0",
+  "description": "Review Before Merge workflow for Claude Code: a seven-point change-review skill, a read-only security-review skill and security-reviewer subagent, a post-edit test hook, and an unsafe-command blocking hook.",
+  "author": {
+    "name": "Luca Berton"
+  },
+  "license": "MIT",
+  "keywords": ["code-review", "security", "testing", "hooks", "quality-gates", "workshop"]
+}

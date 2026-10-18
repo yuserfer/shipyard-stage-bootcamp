@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shipyard · Release dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Shipyard</p>
+      <h1>Release <span id="release-name">v1.4</span> readiness</h1>
+    </div>
+    <span class="badge" id="release-date">Target: 2026-11-10</span>
+  </header>
+
+  <main>
+    <section class="kpis" aria-label="Release metrics">
+      <article class="kpi"><h2>Open tasks</h2><p id="kpi-open">–</p></article>
+      <article class="kpi"><h2>Completed</h2><p id="kpi-done">–</p></article>
+      <article class="kpi kpi-alert"><h2>Overdue</h2><p id="kpi-overdue">–</p></article>
+      <article class="kpi"><h2>Notes</h2><p id="kpi-notes">–</p></article>
+    </section>
+
+    <section class="panel" aria-labelledby="tasks-title">
+      <div class="panel-head">
+        <h2 id="tasks-title">Release tasks</h2>
+        <div class="filters">
+          <label>Owner <select id="owner-filter"><option value="">All owners</option></select></label>
+          <label>Status
+            <select id="status-filter">
+              <option value="pending">Pending</option>
+              <option value="done">Done</option>
+              <option value="all">All</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <table class="tasks">
+        <thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead>
+        <tbody id="tasks-body"></tbody>
+      </table>
+      <p class="empty" id="tasks-empty" hidden>No tasks match these filters.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="release-notes-title">
+      <div class="panel-head">
+        <h2 id="release-notes-title">Release notes <span id="rn-version">v1.4</span></h2>
+        <button class="button" id="rn-copy" type="button">Copy as Markdown</button>
+      </div>
+      <div class="release-notes" id="release-notes"></div>
+      <p class="empty" id="rn-empty" hidden>No notes tagged for this release yet.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="notes-title">
+      <div class="panel-head">
+        <h2 id="notes-title">Engineering notes</h2>
+        <input id="notes-search" type="search" placeholder="Search notes" aria-label="Search notes">
+      </div>
+      <div class="tags" id="tag-chips" aria-label="Filter by tag"></div>
+      <ul class="notes" id="notes-list"></ul>
+      <p class="empty" id="notes-empty" hidden>No notes found.</p>
+    </section>
+  </main>
+
+  <footer>Data from <code>/api/tasks</code> and <code>/api/notes</code> · <span id="last-updated">loading…</span></footer>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
