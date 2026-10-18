@@ -39,7 +39,7 @@ FAIL if: a material line can't be explained or contradicts the brief.
 
 Checks:
 - Run `python3 -m unittest discover -s tests -q` (Python changes).
-- Run `node --test dashboard/tests/` (dashboard changes, if node exists).
+- Run `node --test "dashboard/tests/*.mjs"` (dashboard changes, if node exists).
 - Confirm new tests exist for new behaviour and edge cases (empty input, missing
   record, invalid type, boundary values).
 - Confirm no test was deleted, skipped (`@unittest.skip`, `test.skip`), or weakened
