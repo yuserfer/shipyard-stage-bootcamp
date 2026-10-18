@@ -1,0 +1,11 @@
+$ claude plugin validate ./plugins/engineering-quality --strict
+Validating plugin manifest: /tmp/sy10/plugins/engineering-quality/.claude-plugin/plugin.json
+
+✔ Validation passed
+exit code: 0
+
+$ claude plugin validate . --strict
+Validating marketplace manifest: /tmp/sy10/.claude-plugin/marketplace.json
+
+✔ Validation passed
+exit code: 0

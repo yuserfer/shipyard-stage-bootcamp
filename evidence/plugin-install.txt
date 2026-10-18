@@ -1,0 +1,36 @@
+$ claude plugin marketplace add ./
+Adding marketplace…✔ Successfully added marketplace: shipyard-tools (declared in user settings)
+$ claude plugin install engineering-quality@shipyard-tools
+Installing plugin "engineering-quality@shipyard-tools"...✔ Successfully installed plugin: engineering-quality@shipyard-tools (scope: user)
+$ claude plugin list
+Installed plugins:
+
+  ❯ engineering-quality@shipyard-tools
+    Version: 1.0.0
+    Read from: /tmp/sy10/plugins/engineering-quality
+    Scope: user
+    Status: ✔ enabled
+
+$ claude plugin details engineering-quality@shipyard-tools
+Engineering Quality (engineering-quality) 1.0.0
+  Description: Review Before Merge skill, security review skill, read-only security reviewer agent, post-edit test hook and unsafe-command blocking hook.
+  Source: engineering-quality@shipyard-tools
+
+Component inventory
+  Skills (2)  change-review, security-review
+  Agents (1)  security-reviewer
+  Hooks (2)  PreToolUse, PostToolUse  (harness-only — no model context cost)
+  MCP servers (0)
+  LSP servers (0)
+
+Projected token cost
+  Always-on:   ~398 tok   added to every session
+
+Per-component (rounded)
+  component          always-on  on-invoke
+  security-review         ~150      ~1.1k
+  change-review           ~140      ~1.3k
+  security-reviewer       ~100       ~630
+
+  On-invoke cost is paid each time a skill or agent fires.
+  Token counts are estimates and may differ from actual usage.

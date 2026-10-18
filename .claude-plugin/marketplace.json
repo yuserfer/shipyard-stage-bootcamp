@@ -1,0 +1,16 @@
+{
+  "name": "shipyard-tools",
+  "owner": {
+    "name": "Shipyard team"
+  },
+  "metadata": {
+    "description": "Engineering quality tooling for Shipyard repositories"
+  },
+  "plugins": [
+    {
+      "name": "engineering-quality",
+      "source": "./plugins/engineering-quality",
+      "description": "Review Before Merge skill, security review skill, read-only security reviewer agent, post-edit test hook and unsafe-command blocking hook."
+    }
+  ]
+}
